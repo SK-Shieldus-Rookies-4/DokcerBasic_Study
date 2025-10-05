@@ -1,0 +1,31 @@
+services:
+  mysql-svc:
+    image: mariadb:10.11.8
+    ports:
+    - "3306:3306"
+    volumes:
+      - /Applications/SK-Shieldus-Rookies_Cloud_Study/mydeploy/docker-volume/mariadb/store:/var/lib/mysql
+    env_file: /Applications/SK-Shieldus-Rookies_Cloud_Study/mydeploy/docker-volume/mariadb/env/.env
+
+  myboot-svc:
+    image: jxieun/springbootreactjs:0.2
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-svc
+    restart: always
+    env_file: /Applications/SK-Shieldus-Rookies_Cloud_Study/mydeploy/docker-volume/mariadb/env/.env
+    # environment:
+      # DB_HOST: 'mysql-svc'
+      # DB_PORT: '3306'
+      # DB_DATABASE: 'boot_db'
+      # DB_USERNAME: 'boot'
+      # DB_PASSWORD: 'boot'
+
+# Client
+  # mynginx:
+  #   image: jxieun/springbootreactjs:client0.2
+  #   depends_on:
+  #     - myboot-svc
+  #   ports:
+  #     - "80:80"
