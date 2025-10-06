@@ -22,10 +22,10 @@ services:
       # DB_USERNAME: 'boot'
       # DB_PASSWORD: 'boot'
 
-# Client
-  # mynginx:
-  #   image: jxieun/springbootreactjs:client0.2
-  #   depends_on:
-  #     - myboot-svc
-  #   ports:
-  #     - "80:80"
+#Client
+  mynginx:
+    image: jxieun/springbootreactjs:client0.2
+    depends_on:
+      - myboot-svc
+    ports:
+      - "80:80"
